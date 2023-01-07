@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: single
 title: 关于我们
 permalink: /about/
 ---
