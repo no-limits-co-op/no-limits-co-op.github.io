@@ -18,12 +18,13 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
+# Site Setting
 title: 无涯合作社
 description: >- # this means to ignore newlines until "baseurl:"
   无涯合作社遵循学海无涯的理念成立。
 domain: no-limits-co-op.github.io
-baseurl: "" # the subpath of your site, e.g. /blog
 url: https://no-limits-co-op.github.io  # the base hostname & protocol for your site, e.g. http://example.com
+search: true
 github_username:  no-limits-co-op
 
 # Build settings
