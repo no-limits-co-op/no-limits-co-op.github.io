@@ -1,0 +1,11 @@
+Cloneable:
+  name: "Cloneable"
+  bio: "Java & Ruby full stack developer"
+  avatar: "/assets/images/cloneable.jpg"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:1573652017@qq.com"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/CloneableX"
