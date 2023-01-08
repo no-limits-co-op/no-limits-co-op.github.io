@@ -20,4 +20,5 @@ bundle run jekyll serve
 - 搜索功能。目前搜索功能使用的是默认议案 [lunr](https://lunrjs.com/)，博客中只要在 *_config.yml* 中开启配置即可，具体配置项可查看[搜索功能配置](https://mmistakes.github.io/minimal-mistakes/docs/configuration/#site-search)。
 - 文章页面默认布局配置。在 *_config.yml* 中配置了 `defaults` 项，分别配置了 *_posts* 和 *_pages* 的默认布局。具体可查看 [posts 配置](https://mmistakes.github.io/minimal-mistakes/docs/posts/)和 [pages 配置](https://mmistakes.github.io/minimal-mistakes/docs/pages/)。
 - 文章作者配置。作者信息可以统一编写在 *_data/authors.yml* 文件中，然后在自己编写的文章声明信息中配置 `author: author_name` 即可。
+- 开启 toc。在 *_config.yml* 文件中 `defaults` 部分为对应的文章类型配置 `toc: true` 即可开启 toc。具体配置可查看 [toc 配置](https://mmistakes.github.io/minimal-mistakes/docs/layouts/#table-of-contents)。
 
