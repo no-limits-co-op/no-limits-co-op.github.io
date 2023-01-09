@@ -1,0 +1,48 @@
+---
+title:  "Rails 6 js 代码管理探索"
+date:   2023-01-09 09:34:45 +0800
+author: Cloneable
+categories: rails js webpacker
+---
+
+由于 Rails 6 引入了 Webpacker，所以 js 等前端资源的管理主要交由 Webpacker 处理。Webpacker 在引入 React、Vue 等现代前端框架方面确实为 Rails 项目的开发提供了大量便利，但同时对于 js 代码管理和模块化的最佳实践提出了更高的要求。
+
+### 存在的问题
+
+之前接触和开发的 Rails 项目习惯将不同页面用到的 js 文件在 *app/javascript/packs/application.js* 中引入。这将导致开发过程中只要对 *application.js* 文件中引入的 js 代码进行更改将引起所有的 js 文件编辑，最终导致开发过程编译耗时过长。同时，在用户通过浏览器访问页面时没有按需加载 js 文件（虽然因为现在的网速较高可以基本忽略此问题，但它确实存在）。
+
+### 解决方案
+
+目前我的实践方案比较简单，只需要在 *app/javascript/packs* 下创建多个入口文件，分别负责引入不同分类的 js 文件即可。我划分的粒度是以 controller 为单位，这个粒度不至于太小导致出现大量 js 入口文件，同时也能兼具 js 文件之间的关联性。
+
+然后在入口文件中引入相关的 js 文件，这些 js 文件按 controller 的名称文件夹放置，并且 js 文件名称按应用的 view 名称命名并在对应的入口文件中引入即可，而公共组件可以考虑在 *application.js* 文件中引入。这样修改 js 代码时只会使对应的入口文件及其相关的 js 代码被重新编译。
+
+```
+-- app
+ |
+  -- javascript
+   |
+    -- packs
+   |  |
+       -- application.js
+   |  |
+       -- rooms.js
+   |
+    -- src
+      |
+       -- rooms
+         |
+          -- components
+         |
+          -- show.js
+```
+
+除了按上述文件结构放置代码外，还要在 *app/views/layouts/application.html.erb* 布局文件中动态引入 controller 对应的 js 入口文件。
+
+```erb
+<%= javascript_pack_tag controller_name, 'data-turbolinks-track': 'reload' %>
+
+```
+
+通过这种方式我们就能在页面中动态加载对应的 js 文件。
+
